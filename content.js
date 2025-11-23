@@ -46,10 +46,8 @@ function initUI(input, prompts) {
     const btn = document.createElement("button");
     btn.textContent = "AI";
     btn.className = "helper-btn";
-    // input.parentElement.appendChild(btn);
-    console.log("CHECK");
-    // document.getElementsByClassName("ms-auto")[0].appendChild(btn);
-    document.getElementsByClassName("[grid-area:trailing]")[0].appendChild(btn);
+    const target = document.getElementsByClassName("[grid-area:trailing]")[0]; // FIXED selector
+    setTimeout(() => target.appendChild(btn), 1000);
 
     const modal = document.createElement("div");
     modal.className = "helper-modal hidden";
@@ -78,5 +76,7 @@ function initUI(input, prompts) {
         }
     });
 }
+
+function appendWhenReady(btn, tries = 0) {}
 
 insertUI();
