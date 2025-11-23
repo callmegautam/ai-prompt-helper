@@ -1,0 +1,29 @@
+body {
+    font-family: sans-serif;
+    padding: 12px;
+    width: 300px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    resize: vertical;
+}
+
+button {
+    margin: 8px 0;
+    padding: 6px;
+    background: #0b74ff;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+li {
+    margin: 6px 0;
+    background: #eee;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+}
