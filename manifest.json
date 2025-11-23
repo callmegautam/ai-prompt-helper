@@ -1,0 +1,13 @@
+{
+    "manifest_versin": 3,
+    "name": "AI Prompt Helper",
+    "description": "A simple tool to help you create AI prompts.",
+    "version": "1.0.0",
+    "author": "Gautam Suthar",
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "icon.png"
+    },
+
+    "permission": ["activeTab", "scripting"]
+}
