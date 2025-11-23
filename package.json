@@ -1,0 +1,21 @@
+{
+    "name": "ai-prompt-helper",
+    "version": "0.1.0",
+    "description": "Quick prompts inside AI chat input boxes",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc && cp -r public/* dist/"
+    },
+    "keywords": [
+        "AI",
+        "ChatGPT",
+        "prompts"
+    ],
+    "author": "Gautam Suthar <iamgautamsuthar@outlook.com> (https://github.com/callmegautam)",
+    "license": "MIT",
+    "packageManager": "pnpm@10.11.1",
+    "devDependencies": {
+        "@types/chrome": "^0.1.31",
+        "typescript": "^5.9.3"
+    }
+}

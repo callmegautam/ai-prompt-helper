@@ -1,13 +1,13 @@
-const list = document.getElementById("list");
-const newPrompt = document.getElementById("newPrompt");
-const addBtn = document.getElementById("addBtn");
+const list = document.getElementById("list") as HTMLUListElement;
+const newPrompt = document.getElementById("newPrompt") as HTMLTextAreaElement;
+const addPromptBtn = document.getElementById("addBtn") as HTMLButtonElement;
 
-function render(prompts) {
+function render(prompts: string[]) {
     list.innerHTML = "";
 
-    prompts.forEach((p, i) => {
+    prompts.forEach((prompt: string, i: number) => {
         const li = document.createElement("li");
-        li.textContent = p;
+        li.textContent = prompt;
 
         const del = document.createElement("button");
         del.textContent = "x";
@@ -22,13 +22,13 @@ function render(prompts) {
     });
 }
 
-function save(prompts) {
+function save(prompts: string[]) {
     chrome.storage.sync.set({ prompts }, () => {
         render(prompts);
     });
 }
 
-addBtn.onclick = () => {
+addPromptBtn.onclick = () => {
     const text = newPrompt.value.trim();
     if (!text) return;
     load((prompts) => {
@@ -38,9 +38,10 @@ addBtn.onclick = () => {
     });
 };
 
-function load(cb) {
+function load(cb: (prompts: string[]) => void) {
     chrome.storage.sync.get(["prompts"], (res) => {
-        cb(res.prompts || []);
+        const prompts = (res.prompts as string[] | undefined) || [];
+        cb(prompts);
     });
 }
 

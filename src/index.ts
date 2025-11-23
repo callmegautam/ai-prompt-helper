@@ -1,10 +1,10 @@
-console.log("content running");
+console.log("AI prompt helper extension is running");
 
 function getChatInput() {
     return document.querySelector('[contenteditable="true"]');
 }
 
-function setInputValue(text) {
+function setInputValue(text: string) {
     const editable = getChatInput();
     if (!editable) return;
 
@@ -14,10 +14,10 @@ function setInputValue(text) {
     editable.dispatchEvent(event);
 }
 
-function loadPrompts(callback) {
+function loadPrompts(callback: (prompts: string[]) => void) {
     // chrome.storage.sync.get(["prompts"], (data) => {
     //     callback(
-    //         data.prompts || [
+    //         data.prompts as string[] | undefined || [
     //             "Explain this in simpler words.",
     //             "Summarize in bullet points.",
     //             "Rewrite this professionally.",
@@ -42,7 +42,7 @@ function insertUI() {
     }, 500);
 }
 
-function initUI(input, prompts) {
+function initUI(input: HTMLTextAreaElement, prompts: string[]) {
     const btn = document.createElement("button");
     btn.textContent = "AI";
     btn.className = "helper-btn";
@@ -71,12 +71,10 @@ function initUI(input, prompts) {
     btn.onclick = () => modal.classList.toggle("hidden");
 
     document.addEventListener("click", (e) => {
-        if (!modal.contains(e.target) && !btn.contains(e.target)) {
+        if (!modal.contains(e.target as Node) && !btn.contains(e.target as Node)) {
             modal.classList.add("hidden");
         }
     });
 }
-
-function appendWhenReady(btn, tries = 0) {}
 
 insertUI();

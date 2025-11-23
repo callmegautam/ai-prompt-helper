@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "AI Prompt Helper",
-    "version": "1.0",
+    "version": "0.1.0",
     "description": "Quick prompts inside AI chat input boxes",
     "permissions": ["storage", "activeTab", "scripting"],
     "action": {
@@ -10,11 +10,13 @@
     "content_scripts": [
         {
             "matches": ["https://chatgpt.com/*"],
-            "js": ["content.js"],
+            "js": ["index.js"],
             "css": ["style.css"]
         }
     ],
     "icons": {
-        "128": "icon.jpg"
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
     }
 }
