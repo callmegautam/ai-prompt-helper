@@ -1,15 +1,35 @@
 console.log("content running");
 
+function getChatInput() {
+    return document.querySelector('[contenteditable="true"]');
+}
+
+function setInputValue(text) {
+    const editable = getChatInput();
+    if (!editable) return;
+
+    editable.innerHTML = text;
+
+    const event = new InputEvent("input", { bubbles: true, inputType: "insertText" });
+    editable.dispatchEvent(event);
+}
+
 function loadPrompts(callback) {
-    chrome.storage.sync.get(["prompts"], (data) => {
-        callback(
-            data.prompts || [
-                "Explain this in simpler words.",
-                "Summarize in bullet points.",
-                "Rewrite this professionally.",
-            ]
-        );
-    });
+    // chrome.storage.sync.get(["prompts"], (data) => {
+    //     callback(
+    //         data.prompts || [
+    //             "Explain this in simpler words.",
+    //             "Summarize in bullet points.",
+    //             "Rewrite this professionally.",
+    //         ]
+    //     );
+    // });
+
+    callback([
+        "Explain this in simpler words.",
+        "Summarize in bullet points.",
+        "Rewrite this professionally.",
+    ]);
 }
 
 function insertUI() {
@@ -24,7 +44,7 @@ function insertUI() {
 
 function initUI(input, prompts) {
     const btn = document.createElement("button");
-    btn.textContent = "Prompts";
+    btn.textContent = "AI";
     btn.className = "helper-btn";
     input.parentElement.appendChild(btn);
 
@@ -37,8 +57,7 @@ function initUI(input, prompts) {
         item.textContent = p;
 
         item.onclick = () => {
-            input.value = p;
-            input.dispatchEvent(new Event("input", { bubbles: true }));
+            setInputValue(p);
             modal.classList.add("hidden");
             input.focus();
         };
@@ -49,10 +68,6 @@ function initUI(input, prompts) {
     document.body.appendChild(modal);
 
     btn.onclick = () => modal.classList.toggle("hidden");
-
-    // btn.onclick = () => {
-    //     console.log("Button clicked");
-    // };
 
     document.addEventListener("click", (e) => {
         if (!modal.contains(e.target) && !btn.contains(e.target)) {
