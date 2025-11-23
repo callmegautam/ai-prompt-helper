@@ -46,7 +46,10 @@ function initUI(input, prompts) {
     const btn = document.createElement("button");
     btn.textContent = "AI";
     btn.className = "helper-btn";
-    input.parentElement.appendChild(btn);
+    // input.parentElement.appendChild(btn);
+    console.log("CHECK");
+    // document.getElementsByClassName("ms-auto")[0].appendChild(btn);
+    document.getElementsByClassName("[grid-area:trailing]")[0].appendChild(btn);
 
     const modal = document.createElement("div");
     modal.className = "helper-modal hidden";
