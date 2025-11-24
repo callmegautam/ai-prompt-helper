@@ -27,6 +27,8 @@
 }
 
 .helper-item {
+    font-size: small;
+    border: 1px solid #ccc;
     color: black;
     padding: 8px;
     background: #f4f4f5;

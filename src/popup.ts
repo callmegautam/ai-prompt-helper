@@ -1,6 +1,7 @@
 const list = document.getElementById("list") as HTMLUListElement;
 const newPrompt = document.getElementById("newPrompt") as HTMLTextAreaElement;
-const addPromptBtn = document.getElementById("addBtn") as HTMLButtonElement;
+const addPromptBtn = document.getElementById("addPromptBtn") as HTMLButtonElement;
+const clearPromptsBtn = document.getElementById("clearPromptsBtn") as HTMLButtonElement;
 
 function render(prompts: string[]) {
     list.innerHTML = "";
@@ -28,6 +29,12 @@ function save(prompts: string[]) {
     });
 }
 
+function clearPrompts() {
+    chrome.storage.sync.set({ prompts: [] }, () => {
+        render([]);
+    });
+}
+
 addPromptBtn.onclick = () => {
     const text = newPrompt.value.trim();
     if (!text) return;
@@ -36,6 +43,10 @@ addPromptBtn.onclick = () => {
         save(prompts);
         newPrompt.value = "";
     });
+};
+
+clearPromptsBtn.onclick = () => {
+    clearPrompts();
 };
 
 function load(cb: (prompts: string[]) => void) {
